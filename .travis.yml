@@ -25,4 +25,4 @@ after_success:
     - conda activate base
     - export PKGFILE=$(conda build ./recipe -c demorest -c conda-forge --output)
     - conda install anaconda-client
-    - anaconda -t $CONDA_UPLOAD_TOKEN upload -u demorest --force $PKGFILE
+    - anaconda -t $CONDA_UPLOAD_TOKEN upload -u sevastien --force $PKGFILE
