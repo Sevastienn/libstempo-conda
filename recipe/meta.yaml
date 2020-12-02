@@ -1,0 +1,45 @@
+{% set name = "libstempo" %}
+{% set version = "2.3.5" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_url: https://github.com/Sevastienn/libstempo.git
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python
+    - Cython>=0.22
+    - numpy
+    - mkl
+    - tempo2
+  run:
+    - python
+    - numpy
+    - scipy
+    - mkl
+    - tempo2
+
+test:
+  imports:
+    - libstempo.libstempo
+
+about:
+  home: "https://github.com/vallis/libstempo"
+  license: UNKNOWN
+  license_family: OTHER
+  license_file: 
+  summary: "A Python wrapper for tempo2"
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
