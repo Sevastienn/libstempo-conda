@@ -3,6 +3,11 @@ compiler: gcc
 os:
     - linux
     - osx
+env:
+    - BUILD_PY=3.7
+    - BUILD_PY=3.8
+    - BUILD_PY=3.9
+    - BUILD_PY=3.7.8
 
 before_install:
     - MINICONDA_VERSION=latest
@@ -20,9 +25,9 @@ before_install:
     - conda info -a
     - export LANG=en_US.UTF-8
 script:
-    - conda build ./recipe -c demorest -c conda-forge
+    - conda build --python $BUILD_PY ./recipe -c demorest -c conda-forge
 after_success:
     - conda activate base
-    - export PKGFILE=$(conda build ./recipe -c demorest -c conda-forge --output)
+    - export PKGFILE=$(conda build --python $BUILD_PY ./recipe -c demorest -c conda-forge --output)
     - conda install anaconda-client
     - anaconda -t $CONDA_UPLOAD_TOKEN upload -u sevastien --force $PKGFILE
